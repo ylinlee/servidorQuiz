@@ -1,12 +1,15 @@
 <table>
-  <tr>
-    <th>
-      <form method="get" action="/quizes">
-          <input type="text" name="search" value="Buscar..." />
-          <input type="submit" value="Buscar" />
-      </form>
-    </th>
-  </tr>
+  <thead>	
+  	<tr>
+	  <th>
+        <form method="get" action="/quizes">
+            <input type="text" name="search" value="Buscar..." />
+            <input type="submit" value="Buscar" />
+        </form>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
 	<% var i; for(i=0; i<quizes.length; i++) { %>
 		<tr>
 			<td>
@@ -14,4 +17,14 @@
 			</td>
 		</tr>
 	<% } %>
+  </tbody>
+  <tfooter>
+  	<tr>
+  		<td>
+			<a href="/quizes/new">
+				<button type="button">Crear pregunta</button>
+			</a>  		
+  		</td>
+  	</tr>
+  </tfooter>
 </table>
