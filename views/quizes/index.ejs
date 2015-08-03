@@ -1,4 +1,12 @@
 <table>
+  <tr>
+    <th>
+      <form method="get" action="/quizes">
+          <input type="text" name="search" value="Buscar..." />
+          <input type="submit" value="Buscar" />
+      </form>
+    </th>
+  </tr>
 	<% var i; for(i=0; i<quizes.length; i++) { %>
 		<tr>
 			<td>
