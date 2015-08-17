@@ -1,3 +1,11 @@
+// MW de autorizacion de accesos HTTP restringidos
+exports.loginRequired = function(req, res, next) {
+	if (req.session.user) {
+		next();
+	} else {
+		res.redirect('/login');
+	}
+};
 // Get /login -- Formulariode login
 exports.new = function(req, res) {
 	var errors = req.session.errors || {};
@@ -23,7 +31,7 @@ exports.create = function(req, res) {
 		// Crear req.session.user y guardar campos id y username
 		// La sesion de define por la existencia de: req.session.user
 		req.session.user = {id: user.id, username: user.username};
-		
+
 		res.redirect(req.session.redir.toString()); // redireccion a path anterior a login
 	});
 };
