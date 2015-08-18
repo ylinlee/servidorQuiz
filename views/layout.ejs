@@ -13,7 +13,7 @@
             <% if(!session.user) { %>
                 <span class="right"><a href="/login">Login</a></span>
             <% } else { %>
-                <form id="logout" method="post" action="/logout?_method=delete"
+                <form id="logout" method="post" action="/logout?_method=delete">
                     <span class="right"> <%= session.user.username %> <a href="javascript:document.getElementById('logout').submit();">Logout</a></span>
                 </form>
             <% } %>

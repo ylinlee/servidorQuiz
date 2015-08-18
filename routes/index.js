@@ -27,7 +27,7 @@ router.get('/quizes/new', sesionController.loginRequired, quizController.new);
 router.post('/quizes/create', sesionController.loginRequired, quizController.create);
 router.get('/quizes/:quizId(\\d+)/edit', sesionController.loginRequired, quizController.edit);
 router.put('/quizes/:quizId(\\d+)', sesionController.loginRequired, quizController.update);
-router.delete('/quizes/:quizId(\/\d+)', sesionController.loginRequired, quizController.destroy);
+router.delete('/quizes/:quizId(\\d+)', sesionController.loginRequired, quizController.destroy);
 
 // Definicion de rutas de comentarios
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);

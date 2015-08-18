@@ -38,7 +38,10 @@ var Comment = sequelize.import(comment_path);
 
 //Definir relaciones
 Comment.belongsTo(Quiz);
-Quiz.hasMany(Comment);
+Quiz.hasMany(Comment, {
+	'onUpdate': 'cascade',	
+	'onDelete': 'cascade'
+});
 
 exports.Quiz = Quiz;
 exports.Comment = Comment;
