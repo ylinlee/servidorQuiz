@@ -33,11 +33,25 @@ app.use(function(req, res, next){
     
     // guardar path en session.redir para despues de login
     if(!req.path.match(/\/login|\/logout/)){
-        req.session.redir = req.path;
+        if(req.path !== '/sessionExpired'){
+            req.session.redir = req.path;    
+        }
     }
 
     // Hacer visible req.session en las vistas
     res.locals.session = req.session;
+
+    // Si hay tiempo de inicio de sesion
+    if(req.session.startTime) {
+        var endTime = new Date();
+        var duracionSesion = endTime.getTime() - req.session.startTime;
+        if( duracionSesion  > ( 2 * 60 * 1000 ) ) {
+            delete req.session.startTime;
+            req.session.endTime = endTime.getTime();
+            res.redirect('/sessionExpired');
+        }
+    }
+
     next();
 });
 

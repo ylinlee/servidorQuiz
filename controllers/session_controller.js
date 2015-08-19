@@ -8,6 +8,7 @@ exports.loginRequired = function(req, res, next) {
 };
 // Get /login -- Formulariode login
 exports.new = function(req, res) {
+
 	var errors = req.session.errors || {};
 	req.session.errors = {};
 
@@ -32,6 +33,12 @@ exports.create = function(req, res) {
 		// La sesion de define por la existencia de: req.session.user
 		req.session.user = {id: user.id, username: user.username};
 
+		//Guardar el inicio de sesion
+		var startTime = new Date();
+		req.session.startTime = startTime.getTime();
+		console.log('El usuario ' + user.username + ' se ha logado a las ' + startTime );
+
+		console.log('Redireccion a path anterior a login ' + req.session.redir.toString());
 		res.redirect(req.session.redir.toString()); // redireccion a path anterior a login
 	});
 };
@@ -39,5 +46,17 @@ exports.create = function(req, res) {
 // DELETE /logout -- Destruir sesion
 exports.destroy = function(req, res){
 	delete req.session.user;
+	delete req.session.startTime;
+	delete req.session.endTime;
 	res.redirect(req.session.redir.toString()); // redirect a path anterior a login
+};
+
+exports.sessionExpired = function(req, res){
+	if(req.session.endTime){
+		console.log('La sesion del usuario ' + req.session.user.username + ' ha terminado a las ' + req.session.endTime);
+		delete req.session.user;
+		delete req.session.endTime;
+		req.session.errors = [{ 'message' : 'La sesion ha caducado vuelva a logearse de nuevo'}];
+		res.redirect('/login');
+	}
 };
