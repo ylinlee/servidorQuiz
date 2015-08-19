@@ -4,8 +4,8 @@ var statistics = {
    	questions: 0,
     comments: 0,
     averageCperQ: 0,
-    unpublished: 0,
-    published: 0
+    withComments: 0,
+    withoutComments: 0
  };
 
 var getQuestions = function(){
@@ -16,8 +16,14 @@ var getComments = function(){
 	return models.Comment.count();
 };
 
-var getUnpublishedComments = function(){
-	return models.Comment.count({where: {publicado: false}});
+var getQuestionsWithComments = function(){
+	return models.Quiz.count({
+		distinct: true, 
+		include: [{ 
+			model: models.Comment, 
+			required: true
+		}]
+	});
 };
 
 exports.show = function(req, res){
@@ -27,10 +33,10 @@ exports.show = function(req, res){
 	}).then(function(comments){
 		statistics.comments = comments;
 		statistics.averageCperQ = statistics.questions ? (statistics.comments / statistics.questions).toFixed(2) : 0;
-		return getUnpublishedComments();
-	}).then(function(unpublished){
-		statistics.unpublished = unpublished;
-		statistics.published = statistics.comments - statistics.unpublished;
+		return getQuestionsWithComments();
+	}).then(function(withComments){
+		statistics.withComments = withComments;
+		statistics.withoutComments = statistics.questions - statistics.withComments;
 		res.render('quizes/statistics/show', {statistics: statistics, errors: []});
 	});
 };
