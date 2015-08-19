@@ -4,6 +4,7 @@ var router = express.Router();
 var quizController = require('../controllers/quiz_controller');
 var commentController = require('../controllers/comment_controller');
 var sesionController = require('../controllers/session_controller');
+var statisticsController = require('../controllers/statistics_controller');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -29,6 +30,8 @@ router.post('/quizes/create', sesionController.loginRequired, quizController.cre
 router.get('/quizes/:quizId(\\d+)/edit', sesionController.loginRequired, quizController.edit);
 router.put('/quizes/:quizId(\\d+)', sesionController.loginRequired, quizController.update);
 router.delete('/quizes/:quizId(\\d+)', sesionController.loginRequired, quizController.destroy);
+
+router.get('/quizes/statistics', statisticsController.show);
 
 // Definicion de rutas de comentarios
 router.get('/quizes/:quizId(\\d+)/comments/new', commentController.new);
