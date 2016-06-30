@@ -1,16 +1,9 @@
-<h2>Login</h2>
-
-<form method="post" action="/login" >
-	<div class="field">
-		<label for="login">Login:</label><br />
-		<input type="text" id="login" name="login" size="30" />
-	</div>
-	<div class="field">
-		<label for="password">Password:</label><br />
-		<input type="password" id="password" name="password" size="30" />
-	</div>
-
-	<div class="actions">
-		<input name = commit type="submit" value="Login" />
+<form class="form-signin" method="post" action="/login">
+  <h2 class="form-signin-heading">Please sign in</h2>
+  <label for="login" class="sr-only">Email address</label>
+  <input type="text" id="login" class="form-control" name="login" placeholder="User name"  size="30" required autofocus>
+  <label for="password" class="sr-only">Password</label>
+  <input type="password" id="password" name="password" class="form-control" placeholder="Password"  size="30" required>
+	<button name="commit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 	</div>
 </form>

@@ -1,13 +1,67 @@
-<h2>Estadísticas</h2>
-<table>
-	<tr><th>El número de preguntas:</th>
-		<td><%= statistics.questions %></td></tr>
-	<tr><th>El número de comentarios totales:</th>
-		<td><%= statistics.comments %></td></tr>
-	<tr><th>El número medio de comentarios por pregunta:</th>
-		<td><%= statistics.averageCperQ %></td></tr>
-	<tr><th>El número de preguntas sin comentarios:</th>
-		<td><%= statistics.withoutComments %></td></tr>
-	<tr><th>El número de preguntas con comentarios:</th>
-		<td><%= statistics.withComments %></td></tr>
-</table>
+<div class="row">
+    <div class="col-lg-12">
+        <h2 class="page-header">Estadísticas</h2>
+    </div>
+</div>
+<div  class="row">
+	<div class="col-lg-6">
+	    <div class="widget navy-bg no-padding">
+	        <div class="p-m">
+	            <h1 class="m-xs"><%= statistics.questions %></h1>
+
+	            <small>El número de preguntas</small>
+	        </div>
+	        <div class="flot-chart">
+	            <div class="flot-chart-content" id="flot-chart1c"></div>
+	        </div>
+	    </div>
+	</div>
+	<div class="col-lg-3">
+      <div class="widget yellw-bg no-padding">
+          <div class="p-m">
+              <h1 class="m-xs"><%= statistics.comments %></h1>
+
+              <small>El número de comentarios totales</small>
+          </div>
+          <div class="flot-chart">
+              <div class="flot-chart-content" id="flot-chart3"></div>
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-3">
+      <div class="widget lazur-bg no-padding">
+          <div class="p-m">
+              <h1 class="m-xs"><%= statistics.averageCperQ %></h1>
+
+              <small>El número medio de comentarios por pregunta</small>
+          </div>
+          <div class="flot-chart">
+              <div class="flot-chart-content" id="flot-chart2"></div>
+          </div>
+      </div>
+  </div>
+  <div class="col-lg-6">
+	    <div class="widget navy-bg no-padding">
+	        <div class="p-m">
+	            <h1 class="m-xs"><%= statistics.withoutComments %></h1>
+
+	            <small>El número de preguntas sin comentarios</small>
+	        </div>
+	        <div class="flot-chart">
+	            <div class="flot-chart-content" id="flot-chart1b"></div>
+	        </div>
+	    </div>
+	</div>
+	<div class="col-lg-6">
+	    <div class="widget navy-bg no-padding">
+	        <div class="p-m">
+	            <h1 class="m-xs"><%= statistics.withComments %></h1>
+
+	            <small>El número de preguntas con comentarios</small>
+	        </div>
+	        <div class="flot-chart">
+	            <div class="flot-chart-content" id="flot-chart1a"></div>
+	        </div>
+	    </div>
+	</div>
+</div>
